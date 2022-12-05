@@ -152,7 +152,7 @@ namespace Launcher.ViewModel
                     }
                 case ProxyType.PROXY_ONLY:
                     {
-                        if (LauncherConfig.Servers.Count == 0)
+                        if (LauncherConfig.Servers.Count == 0||SelectedSrv==null)
                         {
                             SnackBar.Show("请至少添加并选择一个服务器！", null);
                             return;
