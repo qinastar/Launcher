@@ -138,7 +138,7 @@ namespace Launcher.ViewModel
 
 
 
-                        var dll = mhypbaseHelper.WriteMhypbaseAllTo(fd, SelectedSrv); ;
+                        var dll = RSAPatchHelper.WriteMhypbaseAllTo(fd, SelectedSrv); ;
                         if (dll != null)
                         {
                             GameHelper.StartGame(fp, dll);

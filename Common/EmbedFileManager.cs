@@ -30,7 +30,6 @@ namespace Launcher.Common
 
     }
 
-    [Obsolete]
     public static class RawFileHelper
     {
         public static byte[] GetKey(string file)
@@ -39,7 +38,7 @@ namespace Launcher.Common
             try
             {
                 var _assembly = Assembly.GetExecutingAssembly();//获取当前执行代码的程序集
-                sr = _assembly.GetManifestResourceStream($"Launcher.key.{file}");
+                sr = _assembly.GetManifestResourceStream($"Launcher.RSAPatch.{file}");
 
             }
             catch
@@ -59,13 +58,13 @@ namespace Launcher.Common
         }
     }
 
-    public static class mhypbaseHelper
+    public static class RSAPatchHelper
     {
         public static string WriteMhypbaseAllTo(string path1, Model.ServerItem item)
         {
             WriteDllTo(path1);
             WriteInITo(path1, item);
-            return Path.Combine(path1, "mhypbase.cr.dll");
+            return Path.Combine(path1, "rsa.dll");
         }
 
 
@@ -75,7 +74,7 @@ namespace Launcher.Common
             try
             {
                 //EmbedFileManager.ExtractFile("mhypbase.mhypbase.cr.dll",file);
-                EmbedFileManager.ExtractFile("mhypbase.mhypbase.cr.dll", Path.Combine(".\\", "mhypbase.cr.dll"));
+                EmbedFileManager.ExtractFile("RSAPatch.RSAPatch.dll", Path.Combine(".\\", "rsa.dll"));
 
             }
             catch
@@ -89,29 +88,27 @@ namespace Launcher.Common
         {
             try
             {
-                var inif = Path.Combine(path1, "mhypbase.ini");
-
-                if (File.Exists(inif))
-                {
-                    File.Delete(inif);
-                }
-                EmbedFileManager.ExtractFile("mhypbase.mhypbase.ini", inif);
+                
 
                 if (App.launcherConfig.DebugMode)
                 {
-                    IniHelper.INIWrite("Basic", "EnableConsole", "true", inif);
+                    // debug
                 }
 
 
 
                 if (!string.IsNullOrEmpty(item.RSAPrivateKey))
                 {
-                    IniHelper.INIWrite("Value", "RSAPrivateKey", item.RSAPrivateKey, inif);
-
+                    File.WriteAllText("PrivateKey.txt", item.RSAPrivateKey);
                 }
                 if (!string.IsNullOrEmpty(item.RSAPublicKey))
                 {
-                    IniHelper.INIWrite("Value", "RSAPublicKey", item.RSAPublicKey, inif);
+                    File.WriteAllText("PublicKey.txt", item.RSAPublicKey);
+                }
+                else
+                {
+                    // use default
+                    File.WriteAllBytes("PublicKey.txt", RawFileHelper.GetKey("PublicKey.txt"));
                 }
 
 

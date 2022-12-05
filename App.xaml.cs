@@ -21,8 +21,11 @@ namespace Launcher
 
             AppDomain currentDomain = AppDomain.CurrentDomain;
             // 当前作用域出现未捕获异常时，使用MyHandler函数响应事件
+
+#if !DEBUG
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
 
+#endif
 
             //单例
             bool ret;
