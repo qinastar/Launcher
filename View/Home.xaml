@@ -30,6 +30,8 @@
             pu:ListBoxHelper.ItemsPadding="20 0"
             pu:ListBoxHelper.ItemsSelectedBackground="#b8dbf1"
             Background="#f3f6fc"
+            pu:ListBoxHelper.ShadowColor="Gray"
+            pu:ShadowHelper.Opacity="0.2"
             BorderThickness="0"
             FontWeight="Bold"
             IsEnabled="{Binding CanChangeProxyType}"
@@ -108,7 +110,7 @@
                                 pu:ScrollBarHelper.HoverThumbBackground="#b8dbf1"
                                 pu:ScrollBarHelper.ThumbBackground="#aab8dbf1"
                                 pu:ScrollBarHelper.ThumbBorderThickness="2 0 0 4"
-                                pu:ScrollBarHelper.ThumbCornerRadius="6"
+                                pu:ScrollBarHelper.ThumbCornerRadius="4"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 FontSize="14"
@@ -185,14 +187,17 @@
 
             </Grid>
 
-            <Border Grid.ColumnSpan="2" CornerRadius="20">
+            <Border
+                Grid.ColumnSpan="2"
+                CornerRadius="20"
+                Effect="{StaticResource defaultShadow}">
                 <Border.Background>
-                    <ImageBrush ImageSource="https://i0.hdslb.com/bfs/new_dyn/179b6391c781ccf0854f593ed6c9c6654750534.png@1036w.webp" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="https://i0.hdslb.com/bfs/new_dyn/be2c9d48dfa1e57161609e693b48982a401742377.png@1036w.webp" Stretch="UniformToFill" />
                 </Border.Background>
                 <Border
                     Margin="350,0,0,0"
                     Padding="20"
-                    Background="#66E3F2FD"
+                    Background="#88E3F2FD"
                     CornerRadius="0 20 20 0">
 
 
@@ -264,7 +269,10 @@
                 Height="50"
                 HorizontalAlignment="Right"
                 pu:ButtonHelper.CornerRadius="25"
-                pu:ButtonHelper.HoverBackground="#2a73c5"
+                pu:ButtonHelper.HoverBackground="#ee2a73c5"
+                pu:ButtonHelper.HoverShadowColor="#b8dbf1"
+                pu:ButtonHelper.ShadowColor="Gray"
+                pu:ShadowHelper.Opacity="0.4"
                 Background="#1867c0"
                 Command="{Binding StartGameCommand}"
                 Cursor="Hand"
