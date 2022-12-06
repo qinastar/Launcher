@@ -60,31 +60,41 @@ namespace Launcher.Common
 
     public static class RSAPatchHelper
     {
-        public static string WriteMhypbaseAllTo(string path1, Model.ServerItem item)
+        public static string TempFolder = Path.Combine(System.IO.Path.GetTempPath(),"com.launcher");
+
+        public static string WriteMhypbaseAllTo(Model.ServerItem item)
         {
-            WriteDllTo(path1);
-            WriteInITo(path1, item);
-            return Path.Combine(path1, "rsa.dll");
+            if (!Directory.Exists(TempFolder))
+            {
+                Directory.CreateDirectory(TempFolder);
+            }
+            var r = WriteDllTo(TempFolder);
+            WriteInITo(TempFolder, item);
+            return r;
         }
 
-
-        public static void WriteDllTo(string path1)
+        public static void CleanTemp()
         {
+            Directory.Delete(TempFolder, true);
+        }
 
+        public static string WriteDllTo(string folder)
+        {
+            string target_dll = Path.Combine(folder, "rsa.dll");
             try
             {
-                //EmbedFileManager.ExtractFile("mhypbase.mhypbase.cr.dll",file);
-                EmbedFileManager.ExtractFile("RSAPatch.RSAPatch.dll", Path.Combine(".\\", "rsa.dll"));
+                EmbedFileManager.ExtractFile("RSAPatch.RSAPatch.dll", target_dll);
 
             }
             catch
             {
                 throw;
             }
+            return target_dll;
 
         }
 
-        public static void WriteInITo(string path1, Model.ServerItem item)
+        public static void WriteInITo(string folder, Model.ServerItem item)
         {
             try
             {
@@ -99,16 +109,16 @@ namespace Launcher.Common
 
                 if (!string.IsNullOrEmpty(item.RSAPrivateKey))
                 {
-                    File.WriteAllText("PrivateKey.txt", item.RSAPrivateKey);
+                    File.WriteAllText(Path.Combine(folder,"PrivateKey.txt"), item.RSAPrivateKey);
                 }
                 if (!string.IsNullOrEmpty(item.RSAPublicKey))
                 {
-                    File.WriteAllText("PublicKey.txt", item.RSAPublicKey);
+                    File.WriteAllText(Path.Combine(folder, "PublicKey.txt"), item.RSAPublicKey);
                 }
                 else
                 {
                     // use default
-                    File.WriteAllBytes("PublicKey.txt", RawFileHelper.GetKey("PublicKey.txt"));
+                    File.WriteAllBytes(Path.Combine(folder, "PublicKey.txt"), RawFileHelper.GetKey("PublicKey.txt"));
                 }
 
 

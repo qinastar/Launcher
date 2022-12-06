@@ -44,8 +44,6 @@ namespace Launcher
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
-            //Console.WriteLine("UnHandled Exception Caught : " + e.Message);
-            //Console.WriteLine("Runtime terminating: {0}", args.IsTerminating);
 
             MessageBox.Show(e.Message + "\n" + "请吧程序目录下的 err.log 提交至项目issues！", "程序崩溃了！");
             System.IO.File.WriteAllText("err.log", e.Message + JsonConvert.SerializeObject(e));

@@ -29,9 +29,9 @@
             pu:ListBoxHelper.ItemsHoverBackground="#a0b8dbf1"
             pu:ListBoxHelper.ItemsPadding="20 0"
             pu:ListBoxHelper.ItemsSelectedBackground="#b8dbf1"
-            Background="#f3f6fc"
             pu:ListBoxHelper.ShadowColor="Gray"
             pu:ShadowHelper.Opacity="0.2"
+            Background="#f3f6fc"
             BorderThickness="0"
             FontWeight="Bold"
             IsEnabled="{Binding CanChangeProxyType}"
@@ -190,7 +190,8 @@
             <Border
                 Grid.ColumnSpan="2"
                 CornerRadius="20"
-                Effect="{StaticResource defaultShadow}">
+                Effect="{StaticResource defaultShadow}"
+                RenderOptions.BitmapScalingMode="HighQuality">
                 <Border.Background>
                     <ImageBrush ImageSource="https://i0.hdslb.com/bfs/new_dyn/be2c9d48dfa1e57161609e693b48982a401742377.png@1036w.webp" Stretch="UniformToFill" />
                 </Border.Background>

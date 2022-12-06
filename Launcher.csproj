@@ -363,7 +363,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InjectorLib.dll" />
+    <EmbeddedResource Include="Costura64\InjectorLib.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="key\GC-Dispatch.txt" />

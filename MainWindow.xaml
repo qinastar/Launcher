@@ -21,7 +21,8 @@
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid Background="#f3f6fc">
+        <Grid Background="#f3f6fc" Effect="{StaticResource defaultShadow}">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition />

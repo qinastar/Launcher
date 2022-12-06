@@ -22,12 +22,12 @@ namespace Launcher.Common
             string dll_file = Path.Combine(currentDir, "InjectorLib.dll");
             if (File.Exists(filePath))
             {
-                if (!File.Exists("InjectorLib.dll"))
-                {
-                    EmbedFileManager.ExtractFile("InjectorLib.dll", dll_file);
-                }
+                //if (!File.Exists("InjectorLib.dll"))
+                //{
+                //    EmbedFileManager.ExtractFile("InjectorLib.dll", dll_file);
+                //}
 
-                target_dll =Path.Combine(currentDir, "rsa.dll");
+                target_dll =Path.Combine(currentDir, target_dll);
                 bool r=Begin(filePath, target_dll);
 
                 if (r)
