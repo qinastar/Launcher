@@ -33,6 +33,7 @@
             pu:ShadowHelper.Opacity="0.2"
             Background="#f3f6fc"
             BorderThickness="0"
+            FontSize="14"
             FontWeight="Bold"
             IsEnabled="{Binding CanChangeProxyType}"
             SelectionChanged="ListBox_SelectionChanged">
@@ -42,13 +43,13 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBoxItem>
-                <TextBlock HorizontalAlignment="Center" Text="Official" />
+                <TextBlock HorizontalAlignment="Center" Text="官方" />
             </ListBoxItem>
             <ListBoxItem>
-                <TextBlock Text="Private" />
+                <TextBlock Text="私有" />
             </ListBoxItem>
             <ListBoxItem>
-                <TextBlock Text="Proxy Only" />
+                <TextBlock Text="仅代理" />
             </ListBoxItem>
         </ListBox>
 
@@ -140,6 +141,8 @@
                                         <MenuItem Command="{Binding EditCommand}" Header="编辑" />
                                         <MenuItem Command="{Binding AddCommand}" Header="添加" />
                                         <MenuItem Command="{Binding DeleteCommand}" Header="删除" />
+                                        <MenuItem Command="{Binding ExportCommand}" Header="导出到剪贴板" />
+                                        <MenuItem Command="{Binding ImportCommand}" Header="从剪贴板导入" />
                                     </ContextMenu>
                                 </ListBox.ContextMenu>
                                 <ListBox.ItemTemplate>
@@ -193,7 +196,7 @@
                 Effect="{StaticResource defaultShadow}"
                 RenderOptions.BitmapScalingMode="HighQuality">
                 <Border.Background>
-                    <ImageBrush ImageSource="https://i0.hdslb.com/bfs/new_dyn/be2c9d48dfa1e57161609e693b48982a401742377.png@1036w.webp" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="{Binding LauncherConfig.BgUrl}" Stretch="UniformToFill" />
                 </Border.Background>
                 <Border
                     Margin="350,0,0,0"

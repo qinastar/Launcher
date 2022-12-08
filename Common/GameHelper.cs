@@ -1,4 +1,5 @@
-﻿using Launcher.Control;
+﻿using CommunityToolkit.Mvvm.Input;
+using Launcher.Control;
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
@@ -39,6 +40,10 @@ namespace Launcher.Common
                     SnackBar.Show("Inject Failed!", null);
 
                 }
+            }
+            else
+            {
+
             }
         }
 

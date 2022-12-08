@@ -76,6 +76,34 @@
 
             </Grid>
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="背景图片" />
+                <TextBox
+                    xmlns:Model="clr-namespace:Launcher.Model"
+                    Grid.Column="1"
+                    MinWidth="100"
+                    Margin="0,5,5,5"
+                    Padding="8"
+                    pu:TextBoxHelper.CornerRadius="4"
+                    pu:TextBoxHelper.FocusedBorderBrush="#2a73c5"
+                    pu:TextBoxHelper.Watermark="游戏路径"
+                    Background="Transparent"
+                    BorderThickness="1"
+                    FontSize="14"
+                    Text="{Binding LauncherConfig.BgUrl}" />
+
+            </Grid>
+
             <TextBlock
                 Margin="0,0,0,5"
                 FontSize="20"

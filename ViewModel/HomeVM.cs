@@ -11,6 +11,9 @@ using System.Net.Http.Headers;
 using Launcher.Control;
 using System.Windows.Input;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Launcher.ViewModel
 {
@@ -87,10 +90,31 @@ namespace Launcher.ViewModel
                 return;
             }
             var fp = LauncherConfig.GameInfo.GameExePath;
-            fp = Path.GetFullPath(fp);
-            var fd = LauncherConfig.GameInfo.GameExeFolder;
-            if (!File.Exists(fp))
+            try
+            {
+
+                fp = Path.GetFullPath(fp);
+            }
+            catch (Exception ex)
+            {
+                SnackBar.Show(ex.Message, new RelayCommand(() =>
+                {
+                    MainWindow.Instance.nav.SelectedIndex = 1;
+                }));
                 return;
+            }
+            var fd = LauncherConfig.GameInfo.GameExeFolder;
+            if (!File.Exists(fp)&&LauncherConfig.ProxyType!=ProxyType.PROXY_ONLY)
+            {
+
+                SnackBar.Show("请设置正确的游戏路径！", new RelayCommand(() =>
+                {
+                    //MainWindow.Instance.rootFrame.Navigate(new Uri("/View/Setting.xaml", UriKind.Relative));
+                    MainWindow.Instance.nav.SelectedIndex = 1;
+                }));
+                return;
+            }
+
 
             switch (LauncherConfig.ProxyType)
             {
@@ -231,7 +255,39 @@ namespace Launcher.ViewModel
         public ICommand AddCommand => new RelayCommand(Add);
         public ICommand DeleteCommand => new RelayCommand(Delete);
         public ICommand EditCommand => new RelayCommand(Edit);
+        public ICommand ImportCommand => new RelayCommand(Import);
+        public ICommand ExportCommand => new RelayCommand(Export);
 
+        private void Export()
+        {
+            if (SelectedSrv!=null)
+            {
+                byte[] bytes = Encoding.Default.GetBytes(JsonConvert.SerializeObject(SelectedSrv));
+                string str = Convert.ToBase64String(bytes);
+                Clipboard.SetDataObject(str, true);
+                SnackBar.Show("导出成功！", null);
+
+            }
+        }
+
+        private void Import()
+        {
+            try
+            {
+                IDataObject data = Clipboard.GetDataObject();
+                string srv = (string)data.GetData(typeof(string));
+                byte[] outputb = Convert.FromBase64String(srv);
+                string orgStr = Encoding.Default.GetString(outputb);
+                LauncherConfig.Servers.Add(JsonConvert.DeserializeObject<ServerItem>(orgStr));
+
+                SnackBar.Show("导入成功！", null);
+
+            }
+            catch (Exception ex)
+            {
+                SnackBar.Show("导入失败！",null);
+            }
+        }
 
         private ServerItem selectedSrv;
 
@@ -248,7 +304,7 @@ namespace Launcher.ViewModel
 
             var item = new ServerItem()
             {
-                proxy = new ProxyConfig("127.0.0.1:80")
+                proxy = new ProxyConfig("127.0.0.1")
             };
 
             ServerEditControl.instance.ServerItem = item;

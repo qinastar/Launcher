@@ -46,7 +46,7 @@ namespace Launcher.Model
 
         public bool DebugMode { get; set; }
 
-
+        public string BgUrl { get; set; } = "https://i0.hdslb.com/bfs/new_dyn/be2c9d48dfa1e57161609e693b48982a401742377.png";
 
         private GameInfo gameInfo;
 
