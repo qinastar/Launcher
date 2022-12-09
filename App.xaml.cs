@@ -56,7 +56,7 @@ namespace Launcher
 
             if (!ret)
             {
-                MessageBox.Show("已有一个启动器正在运行！");
+                MessageBox.Show(Launcher.Properties.Resources.tip_alreadyrunning);
                 Environment.Exit(0);
             }
 
@@ -70,7 +70,7 @@ namespace Launcher
         {
             Exception e = (Exception)args.ExceptionObject;
 
-            MessageBox.Show(e.Message + "\n" + "请吧程序目录下的 err.log 提交至项目issues！", "程序崩溃了！");
+            MessageBox.Show(e.Message + "\n" + "请吧程序目录下的 err.log 提交至项目issues！", Launcher.Properties.Resources.tip_crash_title);
             System.IO.File.WriteAllText("err.log", e.Message + JsonConvert.SerializeObject(e));
             Environment.Exit(0);
 

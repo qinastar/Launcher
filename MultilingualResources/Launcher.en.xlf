@@ -163,8 +163,9 @@
           <target state="translated">Detect failed, there is no relevant information in the registry!</target>
         </trans-unit>
         <trans-unit id="tip_serach_succ" translate="yes" xml:space="preserve">
-          <source>已找到位于{}的游戏文件!</source>
-          <target state="translated">Found game file at {}!</target>
+          <source>已找到位于{0}的游戏文件!</source>
+          <target state="needs-review-translation">Found game file at {0}!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="tip_srvname" translate="yes" xml:space="preserve">
           <source>服务器名称</source>
@@ -185,6 +186,14 @@
         <trans-unit id="tip_publickey" translate="yes" xml:space="preserve">
           <source>PublicKey,为空则选择割草机的key</source>
           <target state="translated">PublicKey: If it is empty, it will use grasscutter's ley.</target>
+        </trans-unit>
+        <trans-unit id="tip_alreadyrunning" translate="yes" xml:space="preserve">
+          <source>已经有一个启动器在运行</source>
+          <target state="new">An instance is already running</target>
+        </trans-unit>
+        <trans-unit id="tip_crash_title" translate="yes" xml:space="preserve">
+          <source>崩溃了</source>
+          <target state="new">Crashed</target>
         </trans-unit>
       </group>
     </body>

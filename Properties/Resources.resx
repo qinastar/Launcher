@@ -207,8 +207,14 @@
   <data name="tb_ok" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="tip_alreadyrunning" xml:space="preserve">
+    <value>已经有一个启动器在运行</value>
+  </data>
   <data name="tip_correctgamepath" xml:space="preserve">
     <value>请设置正确的游戏路径！</value>
+  </data>
+  <data name="tip_crash_title" xml:space="preserve">
+    <value>崩溃了</value>
   </data>
   <data name="tip_exp_succ" xml:space="preserve">
     <value>导出成功！</value>
@@ -241,7 +247,7 @@
     <value>选择一个服务器</value>
   </data>
   <data name="tip_serach_succ" xml:space="preserve">
-    <value>已找到位于{}的游戏文件!</value>
+    <value>已找到位于{0}的游戏文件!</value>
   </data>
   <data name="tip_setcfg" xml:space="preserve">
     <value>请先设置 游戏目录 和 游戏版本！</value>

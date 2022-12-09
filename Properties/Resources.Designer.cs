@@ -340,11 +340,29 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 已经有一个启动器在运行 的本地化字符串。
+        /// </summary>
+        public static string tip_alreadyrunning {
+            get {
+                return ResourceManager.GetString("tip_alreadyrunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请设置正确的游戏路径！ 的本地化字符串。
         /// </summary>
         public static string tip_correctgamepath {
             get {
                 return ResourceManager.GetString("tip_correctgamepath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 崩溃了 的本地化字符串。
+        /// </summary>
+        public static string tip_crash_title {
+            get {
+                return ResourceManager.GetString("tip_crash_title", resourceCulture);
             }
         }
         
@@ -439,7 +457,7 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
-        ///   查找类似 已找到位于{}的游戏文件! 的本地化字符串。
+        ///   查找类似 已找到位于{0}的游戏文件! 的本地化字符串。
         /// </summary>
         public static string tip_serach_succ {
             get {

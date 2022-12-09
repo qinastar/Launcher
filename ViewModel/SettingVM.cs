@@ -40,7 +40,7 @@ namespace Launcher.ViewModel
             LauncherConfig.GameInfo = new GameInfo(GameHelper.GameRegReader.GetGameExePath());
             if (File.Exists(LauncherConfig.GameInfo.GameExePath))
             {
-                MessageBox.Show(string.Format(Properties.Resources.tip_search_err),LauncherConfig.GameInfo.GameExeFolder);
+                MessageBox.Show(string.Format(Properties.Resources.tip_serach_succ,LauncherConfig.GameInfo.GameExeFolder));
             }
             else
             {

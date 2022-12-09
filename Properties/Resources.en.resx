@@ -130,7 +130,7 @@
     <value>Detect failed, there is no relevant information in the registry!</value>
   </data>
   <data name="tip_serach_succ" xml:space="preserve">
-    <value>Found game file at {}!</value>
+    <value>Found game file at {0}!</value>
   </data>
   <data name="tip_srvname" xml:space="preserve">
     <value>Server Name</value>
