@@ -9,7 +9,7 @@
     xmlns:prop="clr-namespace:Launcher.Properties"
     xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
     Title="MainWindow"
-    Width="820"
+    Width="800"
     Height="450"
     ResizeMode="NoResize"
     Topmost="False"
