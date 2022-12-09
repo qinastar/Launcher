@@ -2,7 +2,9 @@
 using Launcher.ViewModel;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.Net;
+using System.Threading;
 using System.Windows;
 using System.Windows.Navigation;
 
@@ -13,9 +15,15 @@ namespace Launcher
     /// </summary>
     public partial class App : Application
     {
+//#if DEBUG
+//        private CultureInfo cultureOverride = new CultureInfo("en-US");
+//#endif
         System.Threading.Mutex mutex;
+
         protected override void OnStartup(StartupEventArgs e)
         {
+
+
             ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
 
 
@@ -27,6 +35,7 @@ namespace Launcher
 
 #endif
 
+
             //单例
             bool ret;
             mutex = new System.Threading.Mutex(true, "ElectronicNeedleTherapySystem", out ret);
@@ -37,8 +46,10 @@ namespace Launcher
                 Environment.Exit(0);
             }
 
+            
 
             base.OnStartup(e);
+
         }
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)

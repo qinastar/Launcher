@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Launcher.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prop="clr-namespace:Launcher.Properties"
     xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
     xmlns:viewmodel="clr-namespace:Launcher.ViewModel"
     Title="Home"
@@ -43,13 +44,13 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBoxItem>
-                <TextBlock HorizontalAlignment="Center" Text="官方" />
+                <TextBlock HorizontalAlignment="Center" Text="{x:Static prop:Resources.tab_official}" />
             </ListBoxItem>
             <ListBoxItem>
-                <TextBlock Text="私有" />
+                <TextBlock Text="{x:Static prop:Resources.tab_private}" />
             </ListBoxItem>
             <ListBoxItem>
-                <TextBlock Text="仅代理" />
+                <TextBlock Text="{x:Static prop:Resources.tab_proxyonly}" />
             </ListBoxItem>
         </ListBox>
 
@@ -98,7 +99,7 @@
                                 VerticalAlignment="Top"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Content="可用的服务器:"
+                                Content="{x:Static prop:Resources.h_servers}"
                                 FontSize="16"
                                 FontWeight="Bold" />
                             <ListBox
@@ -129,6 +130,7 @@
                                 </pu:ListBoxHelper.EmptyContent>
                                 <ListBox.ContextMenu>
                                     <ContextMenu
+                                        MinWidth="240"
                                         Padding="0"
                                         pu:ContextMenuHelper.CornerRadius="20"
                                         pu:ContextMenuHelper.ItemsHeight="36"
@@ -138,11 +140,11 @@
                                         Background="#f3f6fc"
                                         BorderThickness="0"
                                         FontSize="14">
-                                        <MenuItem Command="{Binding EditCommand}" Header="编辑" />
-                                        <MenuItem Command="{Binding AddCommand}" Header="添加" />
-                                        <MenuItem Command="{Binding DeleteCommand}" Header="删除" />
-                                        <MenuItem Command="{Binding ExportCommand}" Header="导出到剪贴板" />
-                                        <MenuItem Command="{Binding ImportCommand}" Header="从剪贴板导入" />
+                                        <MenuItem Command="{Binding EditCommand}" Header="{x:Static prop:Resources.cm_edit}" />
+                                        <MenuItem Command="{Binding AddCommand}" Header="{x:Static prop:Resources.cm_add}" />
+                                        <MenuItem Command="{Binding DeleteCommand}" Header="{x:Static prop:Resources.cm_del}" />
+                                        <MenuItem Command="{Binding ExportCommand}" Header="{x:Static prop:Resources.cm_export}" />
+                                        <MenuItem Command="{Binding ImportCommand}" Header="{x:Static prop:Resources.cm_import}" />
                                     </ContextMenu>
                                 </ListBox.ContextMenu>
                                 <ListBox.ItemTemplate>
@@ -211,7 +213,7 @@
                             <Run
                                 FontSize="30"
                                 FontWeight="Bold"
-                                Text="{Binding SelectedSrv.Name, FallbackValue=请选择一个服务器}" />
+                                Text="{Binding SelectedSrv.Name, FallbackValue={x:Static prop:Resources.tip_selectone}}" />
                             <LineBreak />
                             <Run>
                                 Styles are the visual aspects of a UI that give it a distinct look and feel.
@@ -290,7 +292,7 @@
                         FontFamily="{StaticResource remix}"
                         FontSize="20"
                         Text="&#xf00a;" />
-                    <TextBlock Text="{Binding StartBtn_txt, FallbackValue=开始游戏}" />
+                    <TextBlock Text="{Binding StartBtn_txt, FallbackValue={x:Static prop:Resources.btn_startgame}}" />
                 </StackPanel>
             </Button>
         </Grid>

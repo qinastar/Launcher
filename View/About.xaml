@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Launcher.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prop="clr-namespace:Launcher.Properties"
     Title="About"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -16,12 +17,12 @@
         <TextBlock
             FontSize="20"
             FontWeight="Bold"
-            Text="关于" />
+            Text="{x:Static prop:Resources.h_about}" />
 
 
         <TextBlock Margin="0,10,0,5" Text="Launcher by SwetyCore" />
 
-        <TextBlock Margin="0,5" Text=" + 支持的版本:3.1, 3.2, 3.2.50, 3.3, 与 gc-toolkit/RSAPatch 保持同步。" />
+        <TextBlock Margin="0,5" Text="{x:Static prop:Resources.about_desp}" />
 
         <TextBlock
             Margin="0,5"
@@ -29,7 +30,7 @@
             Foreground="#FF006DFF"
             MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
             Tag="https://github.com/gc-toolkit/Launcher"
-            Text="[开源地址]:https://github.com/gc-toolkit/Launcher" />
+            Text="{x:Static prop:Resources.repoinfo}" />
 
         <TextBlock
             Margin="0,5"
@@ -37,7 +38,7 @@
             Foreground="#FF006DFF"
             MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
             Tag="https://github.com/34736384/RSAPatch"
-            Text="[感谢]:https://github.com/34736384/RSAPatch" />
+            Text="{x:Static prop:Resources.repo1}" />
 
     </StackPanel>
 </Page>

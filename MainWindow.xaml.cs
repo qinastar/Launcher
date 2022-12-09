@@ -1,5 +1,7 @@
 ﻿using Launcher.Model;
 using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,6 +25,12 @@ namespace Launcher
             {
 
                 App.launcherConfig = LauncherConfig.Load("config.json");
+
+                if (!string.IsNullOrEmpty(App.launcherConfig.Language))
+                {
+                    CultureInfo cultureOverride = new CultureInfo(App.launcherConfig.Language);
+                    Thread.CurrentThread.CurrentCulture = cultureOverride;
+                }
             }
         }
 

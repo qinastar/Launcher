@@ -38,7 +38,7 @@ namespace Launcher.ViewModel
                     Name = "TestServer",
                     Description = "Styles are the visual aspects of a UI that give it a distinct look and feel.",
 
-                    proxy = new ProxyConfig("180.76.228.173:8080", true, "25566")
+                    proxy = new ProxyConfig("127.0.0.1", true, "25566")
                 });
             }
         }
@@ -47,7 +47,7 @@ namespace Launcher.ViewModel
 
         public ProxyController proxyController;
 
-        private string startBtn_txt = "开始游戏";
+        private string startBtn_txt = Properties.Resources.btn_startgame;
 
         public string StartBtn_txt
         {
@@ -72,7 +72,7 @@ namespace Launcher.ViewModel
             if (!CanStart)
             {
 
-                SnackBar.Show("现在不能开始游戏！",null);
+                SnackBar.Show(Properties.Resources.tip_nostart,null);
 
                 return;
             }
@@ -82,7 +82,7 @@ namespace Launcher.ViewModel
                 //LauncherConfig.GameInfo.Version == null
                 
             {
-                SnackBar.Show("请先设置 游戏目录 和 游戏版本！",new RelayCommand(() =>
+                SnackBar.Show(Properties.Resources.tip_setcfg,new RelayCommand(() =>
                 {
                     //MainWindow.Instance.rootFrame.Navigate(new Uri("/View/Setting.xaml", UriKind.Relative));
                     MainWindow.Instance.nav.SelectedIndex = 1;
@@ -107,7 +107,7 @@ namespace Launcher.ViewModel
             if (!File.Exists(fp)&&LauncherConfig.ProxyType!=ProxyType.PROXY_ONLY)
             {
 
-                SnackBar.Show("请设置正确的游戏路径！", new RelayCommand(() =>
+                SnackBar.Show(Properties.Resources.tip_correctgamepath, new RelayCommand(() =>
                 {
                     //MainWindow.Instance.rootFrame.Navigate(new Uri("/View/Setting.xaml", UriKind.Relative));
                     MainWindow.Instance.nav.SelectedIndex = 1;
@@ -129,7 +129,7 @@ namespace Launcher.ViewModel
                     {
                         Process.Start(startInfo);
 
-                        StartBtn_txt = "正在运行";
+                        StartBtn_txt = Properties.Resources.btn_running;
 
                         CanStart = false;
 
@@ -148,12 +148,12 @@ namespace Launcher.ViewModel
                     {
                         if (LauncherConfig.Servers.Count==0)
                         {
-                            SnackBar.Show("请至少添加并选择一个服务器！",null);
+                            SnackBar.Show(Properties.Resources.tip_reqaddone, null);
                             return;
                         }
                         if (SelectedSrv==null)
                         {
-                            SnackBar.Show("请选择一个服务器！", null);
+                            SnackBar.Show(Properties.Resources.tip_reqselectone, null);
                             return;
                         }
                         var SelectedProxy_C = SelectedSrv.proxy;
@@ -169,7 +169,7 @@ namespace Launcher.ViewModel
                         }
                         CanChangeProxyType = false;
                         CanStart = false;
-                        StartBtn_txt = "正在运行";
+                        StartBtn_txt = Properties.Resources.btn_running;
                         new ProcessWatcher(new EventHandler(pro_Exited)).Watch();
 
                         break;
@@ -178,7 +178,7 @@ namespace Launcher.ViewModel
                     {
                         if (LauncherConfig.Servers.Count == 0||SelectedSrv==null)
                         {
-                            SnackBar.Show("请至少添加并选择一个服务器！", null);
+                            SnackBar.Show(Properties.Resources.tip_reqaddone, null);
                             return;
                         }
                         var SelectedProxy_C = SelectedSrv.proxy;
@@ -190,7 +190,7 @@ namespace Launcher.ViewModel
 
                             proxyController.Stop();
 
-                            StartBtn_txt = "开启代理";
+                            StartBtn_txt = Properties.Resources.btn_startproxy;
                         }
                         else
                         {
@@ -200,7 +200,7 @@ namespace Launcher.ViewModel
 
                             proxyController.Start();
 
-                            StartBtn_txt = "关闭代理";
+                            StartBtn_txt = Properties.Resources.btn_stopproxy;
 
                         }
                     }
@@ -224,24 +224,24 @@ namespace Launcher.ViewModel
             switch (LauncherConfig.ProxyType)
             {
                 case ProxyType.OFFICIAL:
-                    StartBtn_txt = "开始游戏";
+                    StartBtn_txt = Properties.Resources.btn_startgame;
 
                     CanChangeProxyType = true;
                     break;
                 case ProxyType.PRIVATE:
 
-                    StartBtn_txt = "开始游戏";
+                    StartBtn_txt = Properties.Resources.btn_startgame;
 
                     proxyController.Stop();
 
                     CanChangeProxyType = true;
 
-                    var inif = System.IO.Path.Combine(LauncherConfig.GameInfo.GameExeFolder, "mhypbase.ini");
+                    //var inif = System.IO.Path.Combine(LauncherConfig.GameInfo.GameExeFolder, "mhypbase.ini");
 
-                    if (File.Exists(inif))
-                    {
-                        File.Delete(inif);
-                    }
+                    //if (File.Exists(inif))
+                    //{
+                    //    File.Delete(inif);
+                    //}
 
                     break;
                 case ProxyType.PROXY_ONLY:
@@ -265,7 +265,7 @@ namespace Launcher.ViewModel
                 byte[] bytes = Encoding.Default.GetBytes(JsonConvert.SerializeObject(SelectedSrv));
                 string str = Convert.ToBase64String(bytes);
                 Clipboard.SetDataObject(str, true);
-                SnackBar.Show("导出成功！", null);
+                SnackBar.Show(Properties.Resources.tip_exp_succ, null);
 
             }
         }
@@ -280,12 +280,12 @@ namespace Launcher.ViewModel
                 string orgStr = Encoding.Default.GetString(outputb);
                 LauncherConfig.Servers.Add(JsonConvert.DeserializeObject<ServerItem>(orgStr));
 
-                SnackBar.Show("导入成功！", null);
+                SnackBar.Show(Properties.Resources.tip_imp_succ, null);
 
             }
             catch (Exception ex)
             {
-                SnackBar.Show("导入失败！",null);
+                SnackBar.Show(Properties.Resources.tip_imp_err, null);
             }
         }
 
