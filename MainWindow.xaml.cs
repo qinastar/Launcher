@@ -20,18 +20,6 @@ namespace Launcher
             InitializeComponent();
             Instance = this;
 
-
-            if (App.launcherConfig == null)
-            {
-
-                App.launcherConfig = LauncherConfig.Load("config.json");
-
-                if (!string.IsNullOrEmpty(App.launcherConfig.Language))
-                {
-                    CultureInfo cultureOverride = new CultureInfo(App.launcherConfig.Language);
-                    Thread.CurrentThread.CurrentCulture = cultureOverride;
-                }
-            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)

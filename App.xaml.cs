@@ -40,6 +40,20 @@ namespace Launcher
             bool ret;
             mutex = new System.Threading.Mutex(true, "ElectronicNeedleTherapySystem", out ret);
 
+
+            if (App.launcherConfig == null)
+            {
+
+                App.launcherConfig = LauncherConfig.Load("config.json");
+
+                if (!string.IsNullOrEmpty(App.launcherConfig.Language))
+                {
+                    CultureInfo cultureOverride = new CultureInfo(App.launcherConfig.Language);
+                    Thread.CurrentThread.CurrentCulture = cultureOverride;
+                    Thread.CurrentThread.CurrentUICulture = cultureOverride;
+                }
+            }
+
             if (!ret)
             {
                 MessageBox.Show("已有一个启动器正在运行！");
